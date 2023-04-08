@@ -33,7 +33,7 @@ This is an API template made with express and typescript, to speed up your devel
 #### Get item
 
 ```http
-  GET /api/entity/${id}
+ GET /api/entity/${id}
 ```
 
 | Parameter | Type     | Description                       |
@@ -43,7 +43,7 @@ This is an API template made with express and typescript, to speed up your devel
 #### Post item
 
 ```http
-  Post /api/entity/
+ Post /api/entity/
 ```
 
 | Body | Type     | Description                       |
@@ -53,7 +53,7 @@ This is an API template made with express and typescript, to speed up your devel
 #### Update item
 
 ```http
-  Put /api/entity/
+ Put /api/entity/
 ```
 
 | Parameter | Type     | Description                       |
@@ -68,7 +68,7 @@ This is an API template made with express and typescript, to speed up your devel
 #### Delete item
 
 ```http
-  Delete /api/entity
+ Delete /api/entity
 ```
 
 | Parameter | Type     | Description                       |
