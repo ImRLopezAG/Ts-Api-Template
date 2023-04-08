@@ -8,7 +8,7 @@ This is an API template made with express and typescript, to speed up your devel
 
 
 ```bash
- git clone 
+ git clone https://github.com/ImRLopezAG/Ts-Api-Template.git
 
  npm install my-project
  cd my-project
