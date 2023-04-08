@@ -8,18 +8,18 @@ This is an API template made with express and typescript, to speed up your devel
 
 
 ```bash
-  git clone 
+ git clone 
 
-  npm install my-project
-  cd my-project
+ npm install my-project
+ cd my-project
 
-  yarn install my-project
-  cd my-project
+ yarn install my-project
+ cd my-project
 
-  pnpm install my-project
-  cd my-project
+ pnpm install my-project
+ cd my-project
 
-  you need to configure .env file like the .env.dev  also you can add your configuration
+ you need to configure .env file like the .env.dev  also you can add your configuration
 ```
     
 ## API Reference
