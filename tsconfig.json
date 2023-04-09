@@ -12,5 +12,6 @@
   },
   "include": ["./"],
   "typeRoots": ["node_modules/@types"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "files": ["./src/types/types.d.ts"]
 }
