@@ -1,9 +1,9 @@
 import { Sequelize } from 'sequelize'
-import { DbDialect, DbName, DbPassword, DbUser, Host } from '../types/constants'
+import { DBDIALECT, DBNAME, DBPASSWORD, DBUSER, HOST } from '../types/constants'
 
-const sequelize: Sequelize = new Sequelize(DbName, DbUser, DbPassword, {
-  host: Host,
-  dialect: DbDialect
+const sequelize: Sequelize = new Sequelize(DBNAME, DBUSER, DBPASSWORD, {
+  host: HOST,
+  dialect: DBDIALECT
 })
 
 export default sequelize

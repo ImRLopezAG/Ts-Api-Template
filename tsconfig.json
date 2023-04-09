@@ -6,9 +6,11 @@
     "target": "ES6",
     "strict": true,
     "moduleResolution": "node",
-    "outDir": "dist",
+    "outDir": "./dist",
+    "rootDir": "./",
     "resolveJsonModule": true
   },
   "include": ["./"],
-  "typeRoots": ["node_modules/@types"]
+  "typeRoots": ["node_modules/@types"],
+  "exclude": ["node_modules"]
 }

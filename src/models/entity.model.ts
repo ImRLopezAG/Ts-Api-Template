@@ -21,25 +21,10 @@ Entity.init(
       validate: {
         notEmpty: true
       }
-    },
-    email: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-        isEmail: true
-      }
-    },
-    password: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
     }
   },
   {
-    tableName: 'users',
+    tableName: 'entities',
     sequelize
   }
 )

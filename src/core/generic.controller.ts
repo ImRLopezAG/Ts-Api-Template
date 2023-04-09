@@ -19,6 +19,9 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
     try {
       return res.status(200).json(await this.service.GetAll())
     } catch (error) {
+      if (error instanceof Error) {
+        return res.status(500).json({ message: error.message })
+      }
       return next(error)
     }
   }
@@ -32,6 +35,9 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
         return res.status(404).json({ message: `The entity with id ${req.params.id} does not exist` })
       }
     } catch (error) {
+      if (error instanceof Error) {
+        return res.status(500).json({ message: error.message })
+      }
       return next(error)
     }
   }
@@ -47,6 +53,9 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
       const entity = req.body as TEntity
       return res.status(201).json(await this.service.Create(entity))
     } catch (error) {
+      if (error instanceof Error) {
+        return res.status(500).json({ message: error.message })
+      }
       return next(error)
     }
   }
@@ -62,6 +71,9 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
         return res.status(404).json({ message: `The entity with id ${id} does not exist` })
       }
     } catch (error) {
+      if (error instanceof Error) {
+        return res.status(500).json({ message: error.message })
+      }
       return next(error)
     }
   }
@@ -76,6 +88,9 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
         return res.status(404).json({ message: 'Not found' })
       }
     } catch (error) {
+      if (error instanceof Error) {
+        return res.status(500).json({ message: error.message })
+      }
       return next(error)
     }
   }
