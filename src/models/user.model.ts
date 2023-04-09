@@ -8,6 +8,9 @@ export class User extends Model {
   declare username: string
   declare password: string
   declare email: string
+  toJSON (): Omit<this, 'password'> {
+    return Object.assign({}, this.get(), { password: undefined })
+  }
 }
 
 User.init(

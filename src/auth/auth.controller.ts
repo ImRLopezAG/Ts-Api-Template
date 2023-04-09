@@ -3,14 +3,19 @@ import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import { User } from '../models'
 import { SECRET } from '../types/constants'
+import { v4 as uuid } from 'uuid'
 
 interface IAuth {
   username: string
   password: string
 }
 
-export const authenticate = async (req: Request, res: Response): Promise<void> => {
+export const authenticate = async (req: Request, res: Response): Promise<Response | any> => {
   const { username, password }: IAuth = req.body
+  if (username === undefined || password === undefined) {
+    return res.status(400).json({ error: `The property ${username === undefined ? 'username' : 'password'} is required` })
+  }
+
   await User.findOne({
     where: { username }
   }).then(async (user) => {
@@ -22,9 +27,15 @@ export const authenticate = async (req: Request, res: Response): Promise<void> =
         return res.status(400).json({ error: 'The password is incorrect' })
       }
       const token = jwt.sign({
-        id: user.id,
+        id: uuid().split('-').join(''),
+        uid: user.id,
         username: user.username
-      }, SECRET, { expiresIn: '1h' })
+      }, SECRET, {
+        expiresIn: '1h',
+        algorithm: 'HS256',
+        audience: 'app users',
+        issuer: 'app'
+      })
 
       return res
         .status(200)
