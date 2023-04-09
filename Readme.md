@@ -24,15 +24,27 @@ This is an API template made with express and typescript, to speed up your devel
     
 ## API Reference
 
+#### Authenticate with JWT
+
+```
+  Post /api/auth
+```
+
+| Body | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `username` | `string` | **Required**. username |
+| `password` | `string` | **Required**. password |
+
+
 #### Get all items
 
-```http
+```
   GET /api/entity/
 ```
 
 #### Get item
 
-```http
+```
  GET /api/entity/${id}
 ```
 
@@ -42,7 +54,7 @@ This is an API template made with express and typescript, to speed up your devel
 
 #### Post item
 
-```http
+```
  Post /api/entity/
 ```
 
@@ -52,7 +64,7 @@ This is an API template made with express and typescript, to speed up your devel
 
 #### Update item
 
-```http
+```
  Put /api/entity/
 ```
 
@@ -67,7 +79,7 @@ This is an API template made with express and typescript, to speed up your devel
 
 #### Delete item
 
-```http
+```
  Delete /api/entity
 ```
 
