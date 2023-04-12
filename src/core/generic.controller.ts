@@ -17,7 +17,11 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
 
   async GetAll (_req: Request, res: Response, next: NextFunction): Promise<Response | any> {
     try {
-      return res.status(200).json(await this.service.GetAll())
+      const data = await this.service.GetAll()
+      return res.status(200).json({
+        status: 'success',
+        data
+      })
     } catch (error) {
       if (error instanceof Error) {
         return res.status(500).json({ message: error.message })
@@ -30,7 +34,7 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
     try {
       const entity = await this.service.Get(req.params.id)
       if (entity != null) {
-        return res.status(200).json(entity)
+        return res.status(200).json({ status: 'success', data: entity })
       } else {
         return res.status(404).json({ message: `The entity with id ${req.params.id} does not exist` })
       }
@@ -51,7 +55,8 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
         }
       }
       const entity = req.body as TEntity
-      return res.status(201).json(await this.service.Create(entity))
+      const created = await this.service.Create(entity)
+      return res.status(201).json({ status: 'success', data: created })
     } catch (error) {
       if (error instanceof Error) {
         return res.status(500).json({ message: error.message })
@@ -66,7 +71,8 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
       const entity = await this.service.Get(id)
       if (entity != null) {
         const data = req.body as TEntity
-        return res.status(200).json(await this.service.Update(id, data))
+        const updated = await this.service.Update(id, data)
+        return res.status(200).json({ status: 'success', data: updated })
       } else {
         return res.status(404).json({ message: `The entity with id ${id} does not exist` })
       }

@@ -1,5 +1,5 @@
 import { Model, ModelStatic } from 'sequelize'
-import { IGenericService, schema } from '../types/interface'
+import { IGenericService, Schema } from '../types/interface'
 
 export abstract class GenericService<TEntity extends Model> implements IGenericService<TEntity> {
   protected constructor (private readonly model: ModelStatic<TEntity>) {}
@@ -8,28 +8,28 @@ export abstract class GenericService<TEntity extends Model> implements IGenericS
     return await this.model.findAll()
   }
 
-  async Get (id: string): Promise<TEntity | null> {
+  async Get (id: string | number): Promise<TEntity | null> {
     return await this.model.findByPk(id)
   }
 
-  async Create (data: TEntity): Promise<TEntity> {
+  async Create (entity: TEntity): Promise<TEntity> {
     try {
-      return await this.model.create(data instanceof this.model ? data.get() : data)
+      return await this.model.create(entity instanceof this.model ? entity.get() : entity)
     } catch (e) {
       throw new Error('Error while creating entity')
     }
   }
 
-  async Update (id: string, data: TEntity): Promise<TEntity> {
+  async Update (id: string | number, entity: Partial<TEntity>): Promise<TEntity> {
     const item = await this.model.findByPk(id)
     if (item != null) {
-      await item.update(data instanceof this.model ? data.get() : data)
+      await item.update(entity)
       return item
     }
     throw new Error(`${this.model.name} not found`)
   }
 
-  async Delete (id: string): Promise<void> {
+  async Delete (id: string | number): Promise<void> {
     try {
       const entity = await this.model.findByPk(id)
       if (entity != null) {
@@ -43,9 +43,9 @@ export abstract class GenericService<TEntity extends Model> implements IGenericS
     }
   }
 
-  GetSchema (): schema[] {
+  GetSchema (): Schema[] {
     const fields = this.model.rawAttributes
-    const schema: schema[] = Object.keys(fields).map((field: string) => {
+    const schema: Schema[] = Object.keys(fields).map((field: string) => {
       const type = fields[field].field
       return {
         field: type,

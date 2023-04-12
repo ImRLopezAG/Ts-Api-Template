@@ -1,9 +1,11 @@
+import 'reflect-metadata'
+import { container } from 'tsyringe'
 import { Router } from 'express'
 import { UserController } from '../controllers/user.controller'
 
 export const user = Router()
 
-const controller: UserController = new UserController()
+const controller: UserController = container.resolve(UserController)
 
 user.get('/', controller.GetAll)
 user.get('/:id', controller.Get)

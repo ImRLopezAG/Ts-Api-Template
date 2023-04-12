@@ -1,11 +1,11 @@
-import express, { Application, Request, Response } from 'express'
-import { errorHandler } from './middleware/index'
-import { auth, entity, user } from './routes/index'
-import { BASE } from './types/constants'
 import bodyParser from 'body-parser'
 import cors from 'cors'
+import express, { Application, Request, Response } from 'express'
 import morgan from 'morgan'
 import * as pkg from '../package.json'
+import { errorHandler } from './middleware'
+import * as router from './routes'
+import { BASE } from './types/constants'
 
 const app: Application = express()
 
@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
 app.set('pkg', pkg)
-
 app.get('/', (_req: Request, res: Response) => {
   res.json({
     name: app.get('pkg').name,
@@ -28,9 +27,9 @@ app.get('/', (_req: Request, res: Response) => {
   })
 })
 
-app.use(`${BASE}entities`, entity)
-app.use(`${BASE}users`, user)
-app.use(`${BASE}auth`, auth)
+app.use(`${BASE}auth`, router.auth)
+app.use(`${BASE}entities`, router.entity)
+app.use(`${BASE}users`, router.user)
 
 app.use('*', errorHandler)
 

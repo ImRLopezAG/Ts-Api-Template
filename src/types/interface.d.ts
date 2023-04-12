@@ -1,18 +1,18 @@
 import { NextFunction, Request, Response } from 'express'
 import { Model } from 'sequelize'
 
-export interface schema {
+export interface Schema {
   field: string | any
   allowNull: boolean | any
 }
 
-export interface IGenericService<T extends Model> {
-  GetAll: () => Promise<T[]>
-  Get: (id: string) => Promise<T | null>
-  Create: (data: T) => Promise<T>
-  Update: (id: string, data: T) => Promise<T>
+export interface IGenericService<TEntity extends Model> {
+  GetAll: () => Promise<TEntity[]>
+  Get: (id: string) => Promise<TEntity | null>
+  Create: (data: TEntity) => Promise<TEntity>
+  Update: (id: string, data: TEntity) => Promise<TEntity>
   Delete: (id: string) => Promise<void>
-  GetSchema: () => schema[]
+  GetSchema: () => Schema[]
 }
 
 export interface IGenericController {

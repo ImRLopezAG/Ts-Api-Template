@@ -22,9 +22,15 @@ dependencies:
   mysql2:
     specifier: ^3.2.0
     version: 3.2.0
+  reflect-metadata:
+    specifier: ^0.1.13
+    version: 0.1.13
   sequelize:
     specifier: ^6.30.0
     version: 6.30.0(mysql2@3.2.0)
+  tsyringe:
+    specifier: ^4.7.0
+    version: 4.7.0
   uuid:
     specifier: ^9.0.0
     version: 9.0.0
@@ -2584,6 +2590,10 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /reflect-metadata@0.1.13:
+    resolution: {integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==}
+    dev: false
+
   /regexp.prototype.flags@1.4.3:
     resolution: {integrity: sha512-fjggEOO3slI6Wvgjwflkc4NFRCTZAu5CnNfBd5qOMYhWdn67nJBBu34/TkD++eeFmd8C9r9jfXJ27+nSiRkSUA==}
     engines: {node: '>= 0.4'}
@@ -3041,7 +3051,6 @@ packages:
 
   /tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
-    dev: true
 
   /tsutils@3.21.0(typescript@5.0.3):
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
@@ -3052,6 +3061,13 @@ packages:
       tslib: 1.14.1
       typescript: 5.0.3
     dev: true
+
+  /tsyringe@4.7.0:
+    resolution: {integrity: sha512-ncFDM1jTLsok4ejMvSW5jN1VGPQD48y2tfAR0pdptWRKYX4bkbqPt92k7KJ5RFJ1KV36JEs/+TMh7I6OUgj74g==}
+    engines: {node: '>= 6.0.0'}
+    dependencies:
+      tslib: 1.14.1
+    dev: false
 
   /type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}

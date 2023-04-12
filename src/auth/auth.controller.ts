@@ -32,7 +32,6 @@ export const authenticate = async (req: Request, res: Response): Promise<Respons
         username: user.username
       }, SECRET, {
         expiresIn: '1h',
-        algorithm: 'HS256',
         audience: 'app users',
         issuer: 'app'
       })
