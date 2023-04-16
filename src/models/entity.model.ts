@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize'
-import { v4 as uuid } from 'uuid'
+import crypto from 'crypto'
 import sequelize from '../database/database'
 
 export class Entity extends Model {
@@ -12,7 +12,7 @@ Entity.init(
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      defaultValue: (): string => uuid(),
+      defaultValue: (): string => crypto.randomUUID(),
       unique: true
     },
     name: {

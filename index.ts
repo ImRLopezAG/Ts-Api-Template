@@ -8,7 +8,7 @@ const entity = new Entity()
 const user = new User()
 
 sequelize
-  .sync({ alter: true })
+  .sync()
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server started on http://localhost:${PORT}`)

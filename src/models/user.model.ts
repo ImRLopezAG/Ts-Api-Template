@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
+import crypto from 'crypto'
 import { DataTypes, Model } from 'sequelize'
-import { v4 as uuid } from 'uuid'
 import sequelize from '../database/database'
 
 export class User extends Model {
@@ -18,7 +18,7 @@ User.init(
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      defaultValue: (): string => uuid(),
+      defaultValue: (): string => crypto.randomUUID(),
       unique: true
     },
     username: {
@@ -28,7 +28,8 @@ User.init(
         min: 4,
         max: 12,
         notEmpty: true
-      }
+      },
+      unique: true
     },
     password: {
       type: DataTypes.STRING(128),
@@ -45,7 +46,8 @@ User.init(
       validate: {
         isEmail: true,
         notEmpty: true
-      }
+      },
+      unique: true
     }
   },
   {

@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import { User } from '../models'
 import { SECRET } from '../types/constants'
-import { v4 as uuid } from 'uuid'
+import crypto from 'crypto'
 
 interface IAuth {
   username: string
@@ -27,21 +27,27 @@ export const authenticate = async (req: Request, res: Response): Promise<Respons
         return res.status(400).json({ error: 'The password is incorrect' })
       }
       const token = jwt.sign({
-        id: uuid().split('-').join(''),
-        uid: user.id,
-        username: user.username
+        sub: user.username,
+        email: user.email,
+        uid: user.id
       }, SECRET, {
         expiresIn: '1h',
-        audience: 'app users',
-        issuer: 'app'
+        issuer: 'my app',
+        audience: 'my users',
+        jwtid: crypto.randomBytes(16).toString('hex')
       })
 
+      req.uid = user.id
       return res
         .status(200)
         .header('auth-token', token)
         .json({ token, message: 'Login successful' })
     })
   }).catch((err) => {
-    return res.status(500).json({ error: err })
+    if (err instanceof Error) {
+      console.log(err.message)
+      return res.status(500).json({ error: 'Internal server error' })
+    }
+    return res.status(500).json({ error: 'Internal server error' })
   })
 }

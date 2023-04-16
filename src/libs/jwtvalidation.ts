@@ -7,7 +7,7 @@ export const jwtValidation = (req: Request, res: Response, next: NextFunction): 
   if (token === undefined) return res.status(401).json({ error: 'Access denied, you need to login' })
   try {
     const payload = jwt.verify(token, SECRET) as JwtPayload
-    req.uui = payload.id
+    req.uid = payload.sub
     next()
   } catch (error) {
     if (error instanceof Error) {

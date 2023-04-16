@@ -1,0 +1,10 @@
+{
+  "extends": "./node_modules/ts-standard/eslintrc.json",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/restrict-template-expressions": "off"
+  }
+}

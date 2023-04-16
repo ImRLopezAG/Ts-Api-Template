@@ -18,4 +18,16 @@ export default class UserService extends GenericService<User> implements IUserSe
       throw new Error('Error while getting user by username')
     }
   }
+
+  async GetByEmail (email: string): Promise<User | null> {
+    try {
+      const user = await User.findOne({ where: { email } })
+      return user
+    } catch (error) {
+      if (error instanceof Error) {
+        throw error
+      }
+      throw new Error('Error while getting user by username')
+    }
+  }
 }

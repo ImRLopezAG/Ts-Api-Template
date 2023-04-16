@@ -27,8 +27,7 @@
     "mysql2": "^3.2.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.30.0",
-    "tsyringe": "^4.7.0",
-    "uuid": "^9.0.0"
+    "tsyringe": "^4.7.0"
   },
   "license": "MIT",
   "devDependencies": {
@@ -43,28 +42,10 @@
     "@types/qs": "^6.9.7",
     "@types/sequelize": "^4.28.14",
     "@types/serve-static": "^1.15.1",
-    "@types/uuid": "^9.0.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",
     "ts-standard": "^12.0.2",
     "typescript": "^5.0.3"
-  },
-  "eslintConfig": {
-    "extends": "./node_modules/ts-standard/eslintrc.json",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    },
-    "rules": {
-      "@typescript-eslint/no-misused-promises": "off",
-      "@typescript-eslint/restrict-template-expressions": "off"
-    }
-  },
-  "prettier": {
-    "trailingComma": "none",
-    "tabWidth": 2,
-    "semi": false,
-    "singleQuote": true,
-    "jsxSingleQuote": true
   }
 }
