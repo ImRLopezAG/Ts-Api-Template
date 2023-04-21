@@ -30,7 +30,11 @@ export const validateUser = async (req: Request, res: Response, next: NextFuncti
 }
 
 export const validateUpdateUser = async (req: Request, res: Response, next: NextFunction): Promise<Response | any> => {
-  const token = req.header('auth-token')
+  const authHeader = req.headers.authorization
+  if (authHeader?.split(' ')[0] !== 'Bearer') {
+    return res.status(401).json({ error: 'Access denied, you need to login' })
+  }
+  const token = authHeader.split(' ')[1]
   const { username, email }: ValidateUser = req.body
   const { id } = req.params
   if (token === undefined) return res.status(401).json({ status: 401, message: 'Access denied, you need to login' })
@@ -43,14 +47,14 @@ export const validateUpdateUser = async (req: Request, res: Response, next: Next
       return res.status(401).json({ status: 400, message: 'The user is not the owner of the resource' })
     }
 
-    if (user?.username !== username) {
+    if (username !== undefined && user?.username !== username) {
       const searchUser = await services.GetByUserName(username)
       if (searchUser?.username === username) {
         return res.status(400).json({ status: 400, message: 'Username already in use' })
       }
     }
 
-    if (user?.email !== email) {
+    if (username !== undefined && user?.email !== email) {
       const searchEmail = await services.GetByEmail(email)
       if (searchEmail?.email === email) {
         return res.status(400).json({ error: 'Email already in use' })
@@ -58,9 +62,9 @@ export const validateUpdateUser = async (req: Request, res: Response, next: Next
     }
   } catch (error) {
     if (error instanceof Error) {
-      return res.status(500).json({ error: 'Error while validating token on update' })
+      return res.status(500).send('Internal server error')
     }
-    return res.status(400).json({ error: 'Invalid token' })
+    return res.status(401).send('Unauthorized')
   }
   return next()
 }

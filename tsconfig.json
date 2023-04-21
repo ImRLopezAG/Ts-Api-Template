@@ -10,10 +10,20 @@
     "moduleResolution": "node",
     "outDir": "./dist",
     "rootDir": "./",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "sourceMap": true
   },
-  "include": ["./"],
-  "typeRoots": ["node_modules/@types"],
-  "exclude": ["node_modules"],
-  "files": ["./src/types/types.d.ts"]
+  "include": [
+    "./"
+  ],
+  "typeRoots": [
+    "node_modules/@types"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "./src/types/types.d.ts"
+  ],
+
 }

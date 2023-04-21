@@ -24,9 +24,9 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
       })
     } catch (error) {
       if (error instanceof Error) {
-        return res.status(500).json({ message: error.message })
+        return next(error)
       }
-      return next(error)
+      return res.status(500).json({ status: 500, message: 'Internal server error' })
     }
   }
 
@@ -40,9 +40,9 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
       }
     } catch (error) {
       if (error instanceof Error) {
-        return res.status(500).json({ message: error.message })
+        return next(error)
       }
-      return next(error)
+      return res.status(500).json({ status: 500, message: 'Internal server error' })
     }
   }
 
@@ -59,9 +59,9 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
       return res.status(201).json({ status: 'success', data: created })
     } catch (error) {
       if (error instanceof Error) {
-        return res.status(500).json({ message: error.message })
+        return next(error)
       }
-      return next(error)
+      return res.status(500).json({ status: 500, message: 'Internal server error' })
     }
   }
 
@@ -78,9 +78,9 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
       }
     } catch (error) {
       if (error instanceof Error) {
-        return res.status(500).json({ message: error.message })
+        return next(error)
       }
-      return next(error)
+      return res.status(500).json({ status: 500, message: 'Internal server error' })
     }
   }
 
@@ -95,9 +95,9 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
       }
     } catch (error) {
       if (error instanceof Error) {
-        return res.status(500).json({ message: error.message })
+        return next(error)
       }
-      return next(error)
+      return res.status(500).json({ status: 500, message: 'Internal server error' })
     }
   }
 }

@@ -3,16 +3,25 @@ import jwt, { JwtPayload } from 'jsonwebtoken'
 import { SECRET } from '../types/constants'
 
 export const jwtValidation = (req: Request, res: Response, next: NextFunction): Response | any => {
-  const token = req.header('auth-token')
-  if (token === undefined) return res.status(401).json({ error: 'Access denied, you need to login' })
+  const authHeader = req.headers.authorization
+  if (authHeader?.split(' ')[0] !== 'Bearer') {
+    return res.status(401).json({ error: 'Access denied, you need to login' })
+  }
+
+  const token = authHeader.split(' ')[1]
+  if (!token || token.trim() === '') {
+    return res.status(401).json({ error: 'Access denied, you need to login' })
+  }
+
   try {
     const payload = jwt.verify(token, SECRET) as JwtPayload
     req.uid = payload.sub
     next()
   } catch (error) {
+    console.log(error)
     if (error instanceof Error) {
-      return res.status(500).json({ error: 'Error while validating token' })
+      return res.status(500).send('Internal server error')
     }
-    return res.status(400).json({ error: 'Invalid token' })
+    return res.status(401).send('Unauthorized')
   }
 }

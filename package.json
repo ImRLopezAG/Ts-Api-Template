@@ -1,14 +1,7 @@
 {
   "name": "ts-api-template",
   "author": "Angel Gabriel Lopez",
-  "contact": {
-    "email": "angelg00lopez@gmail.com",
-    "github": "https://github.com/ImRLopezAG",
-    "linkedin": "https://www.linkedin.com/in/angel-gabriel-lopez/",
-    "twitter": "https://twitter.com/ImRLopez",
-    "portfolio": "https://imrlopez.dev"
-  },
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "This is an API template made with express and typescript, to speed up your development, it contains repositories and generic services for the typical CRUD actions, based on a Sequelize model, we use it for data persistence",
   "main": "index.ts",
   "scripts": {
@@ -27,6 +20,8 @@
     "mysql2": "^3.2.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.30.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.2",
     "tsyringe": "^4.7.0"
   },
   "license": "MIT",
@@ -42,6 +37,8 @@
     "@types/qs": "^6.9.7",
     "@types/sequelize": "^4.28.14",
     "@types/serve-static": "^1.15.1",
+    "@types/swagger-jsdoc": "^6.0.1",
+    "@types/swagger-ui-express": "^4.1.3",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.22",
     "ts-node": "^10.9.1",
