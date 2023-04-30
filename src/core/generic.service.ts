@@ -1,5 +1,5 @@
+import { IGenericService, Schema } from '@/utils/constants'
 import { Model, ModelStatic } from 'sequelize'
-import { IGenericService, Schema } from '../types/interface'
 
 export abstract class GenericService<TEntity extends Model> implements IGenericService<TEntity> {
   protected constructor (private readonly model: ModelStatic<TEntity>) {}

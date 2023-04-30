@@ -38,7 +38,7 @@
 
 /**
  * @swagger
- * /api/auth:
+ * /api/Auth/Login:
  *   post:
  *     tags:
  *       - Authentication

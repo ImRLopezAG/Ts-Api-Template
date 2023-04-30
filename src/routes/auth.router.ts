@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import { authenticate } from '../auth/auth.controller'
+import { authenticate } from '@/auth/auth.controller'
 
 export const auth = Router()
 
-auth.post('/', authenticate)
+auth.post('/Login', authenticate)

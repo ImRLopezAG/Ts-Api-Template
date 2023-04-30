@@ -1,6 +1,6 @@
+import { IGenericController } from '@/utils/constants'
 import { NextFunction, Request, Response } from 'express'
 import { Model } from 'sequelize'
-import { IGenericController } from '../types/interface'
 import { GenericService } from './generic.service'
 
 export class GenericController<TEntity extends Model, TService extends GenericService<TEntity>> implements IGenericController {
@@ -17,11 +17,9 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
 
   async GetAll (_req: Request, res: Response, next: NextFunction): Promise<Response | any> {
     try {
-      const data = await this.service.GetAll()
-      return res.status(200).json({
-        status: 'success',
-        data
-      })
+      const entities = await this.service.GetAll()
+
+      return res.status(200).json(entities)
     } catch (error) {
       if (error instanceof Error) {
         return next(error)
@@ -32,9 +30,13 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
 
   async Get (req: Request, res: Response, next: NextFunction): Promise<Response | any> {
     try {
-      const entity = await this.service.Get(req.params.id)
+      const id = req.params.id
+      id ?? res.status(400).json({ message: 'The id is required' })
+
+      const entity = await this.service.Get(id)
+
       if (entity != null) {
-        return res.status(200).json({ status: 'success', data: entity })
+        return res.status(200).json(entity)
       } else {
         return res.status(404).json({ message: `The entity with id ${req.params.id} does not exist` })
       }
@@ -49,14 +51,17 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
   async Create (req: Request, res: Response, next: NextFunction): Promise<Response | any> {
     try {
       const schema = this.service.GetSchema()
+
       for (const field of schema) {
         if (field.allowNull === false && req.body[field.field] === undefined) {
           return res.status(400).json({ message: `The field ${field.field} is required` })
         }
       }
+
       const entity = req.body as TEntity
       const created = await this.service.Create(entity)
-      return res.status(201).json({ status: 'success', data: created })
+
+      return res.status(201).json({ created })
     } catch (error) {
       if (error instanceof Error) {
         return next(error)
@@ -68,11 +73,14 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
   async Update (req: Request, res: Response, next: NextFunction): Promise<Response | any> {
     try {
       const id = req.params.id
+      id ?? res.status(400).json({ message: 'The id is required' })
+
       const entity = await this.service.Get(id)
+
       if (entity != null) {
         const data = req.body as TEntity
         const updated = await this.service.Update(id, data)
-        return res.status(200).json({ status: 'success', data: updated })
+        return res.status(200).json({ updated })
       } else {
         return res.status(404).json({ message: `The entity with id ${id} does not exist` })
       }
@@ -86,10 +94,14 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
 
   async Delete (req: Request, res: Response, next: NextFunction): Promise<Response | any> {
     try {
-      const entity = await this.service.Get(req.params.id)
+      const id = req.params.id
+      id ?? res.status(400).json({ message: 'The id is required' })
+
+      const entity = await this.service.Get(id)
+
       if (entity != null) {
-        await this.service.Delete(req.params.id)
-        return res.status(204).json()
+        await this.service.Delete(id)
+        return res.sendStatus(204)
       } else {
         return res.status(404).json({ message: 'Not found' })
       }

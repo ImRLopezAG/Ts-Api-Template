@@ -33,12 +33,7 @@ User.init(
     },
     password: {
       type: DataTypes.STRING(128),
-      allowNull: false,
-      validate: {
-        min: 8,
-        max: 128,
-        notEmpty: true
-      }
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING(128),

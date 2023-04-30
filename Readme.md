@@ -10,24 +10,24 @@ This is an API template made with express and typescript, to speed up your devel
 ```bash
  git clone https://github.com/ImRLopezAG/Ts-Api-Template.git
 
+ cd my-project
  npm install my-project
- cd my-project
 
+ cd my-project
  yarn install my-project
- cd my-project
 
- pnpm install my-project
  cd my-project
+ pnpm install my-project
 
  you need to configure .env file like the .env.dev  also you can add your configuration
 ```
     
 ## API Reference
 
-#### Authenticate with JWT
+### Authenticate with JWT
 
 ```
-  Post /api/auth
+  Post /api/Auth/Login
 ```
 
 | Body | Type     | Description                |
@@ -39,13 +39,13 @@ This is an API template made with express and typescript, to speed up your devel
 #### Get all items
 
 ```
-  GET /api/entity/
+  GET /api/Entity/List
 ```
 
 #### Get item
 
 ```
- GET /api/entity/${id}
+ GET /api/Entity/Get/${id}
 ```
 
 | Parameter | Type     | Description                       |
@@ -55,7 +55,7 @@ This is an API template made with express and typescript, to speed up your devel
 #### Post item
 
 ```
- Post /api/entity/
+ Post /api/Entity/Create
 ```
 
 | Body | Type     | Description                       |
@@ -65,7 +65,7 @@ This is an API template made with express and typescript, to speed up your devel
 #### Update item
 
 ```
- Put /api/entity/
+ Put /api/Entity/Update
 ```
 
 | Parameter | Type     | Description                       |
@@ -80,7 +80,7 @@ This is an API template made with express and typescript, to speed up your devel
 #### Delete item
 
 ```
- Delete /api/entity
+ Delete /api/Entity/Delete
 ```
 
 | Parameter | Type     | Description                       |

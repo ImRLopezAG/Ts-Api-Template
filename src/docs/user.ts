@@ -37,7 +37,7 @@
 
 /**
  * @swagger
- * /api/users:
+ * /api/User/List:
  *   get:
  *     tags:
  *       - User
@@ -60,7 +60,7 @@
 
 /**
  * @swagger
- * /api/users/{id}:
+ * /api/User/Get/{id}:
  *  get:
  *     tags:
  *       - User
@@ -90,7 +90,7 @@
 
 /**
  * @swagger
- * /api/users:
+ * /api/User/Create:
  *  post:
  *     tags:
  *       - User
@@ -114,7 +114,7 @@
 
 /**
  * @swagger
- * /api/users/{id}:
+ * /api/User/Update/{id}:
  *   put:
  *     tags:
  *       - User
@@ -153,7 +153,7 @@
 
 /**
  * @swagger
- * /api/users/{id}:
+ * /api/User/Delete/{id}:
  *  delete:
  *     tags:
  *       - User

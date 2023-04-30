@@ -1,8 +1,12 @@
+import { SECRET } from '@/utils/constants'
 import { NextFunction, Request, Response } from 'express'
 import jwt, { JwtPayload } from 'jsonwebtoken'
-import { SECRET } from '../types/constants'
 
-export const jwtValidation = (req: Request, res: Response, next: NextFunction): Response | any => {
+export const jwtValidation = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Response | any => {
   const authHeader = req.headers.authorization
   if (authHeader?.split(' ')[0] !== 'Bearer') {
     return res.status(401).json({ error: 'Access denied, you need to login' })

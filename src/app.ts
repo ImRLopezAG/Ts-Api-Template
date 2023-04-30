@@ -1,37 +1,42 @@
-import bodyParser from 'body-parser'
-import cors from 'cors'
 import express, { Application, Request, Response } from 'express'
-import morgan from 'morgan'
+import cors from 'cors'
+import bodyParser from 'body-parser'
 import swaggerUi from 'swagger-ui-express'
-import swaggerSetup from './libs/swagger'
-import { errorHandler } from './middleware'
-import * as router from './routes'
-import { BASE } from './types/constants'
+import morgan from 'morgan'
+import { swaggerSetup } from '@/libs'
+import { errorHandler } from '@/middleware'
+import * as router from '@/routes'
+import { BASE } from '@/utils/constants'
 
 const app: Application = express()
 
-app.use(cors())
-
+app.use(
+  cors({
+    origin: true,
+    credentials: true
+  })
+)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(morgan('dev'))
 
 app.use(
-  `${BASE}docs`,
+  `${BASE}Docs`,
   swaggerUi.serve,
   swaggerUi.setup(swaggerSetup, {
-    customSiteTitle: 'Ts Api Template'
+    customSiteTitle: 'Ts Api Template',
+    customCss: '.swagger-ui .topbar { display: none }'
   })
 )
 
 app.get('/', (_req: Request, res: Response) => {
-  res.redirect(`${BASE}docs`)
+  res.redirect(`${BASE}Docs`)
 })
 
-app.use(`${BASE}auth`, router.auth)
-app.use(`${BASE}entities`, router.entity)
-app.use(`${BASE}users`, router.user)
+app.use(`${BASE}Auth`, router.auth)
+app.use(`${BASE}Entity`, router.entity)
+app.use(`${BASE}User`, router.user)
 
 app.use('*', errorHandler)
 

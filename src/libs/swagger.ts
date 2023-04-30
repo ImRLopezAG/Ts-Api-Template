@@ -1,5 +1,5 @@
+import { PORT } from '@/utils/constants'
 import swaggerJSDoc, { OAS3Definition, OAS3Options } from 'swagger-jsdoc'
-import { PORT } from '../types/constants'
 
 const swaggerDefinition: OAS3Definition = {
   openapi: '3.0.0',
@@ -38,4 +38,4 @@ const swaggerOptions: OAS3Options = {
   security: [{ Bearer: [] }]
 }
 
-export default swaggerJSDoc(swaggerOptions)
+export const swaggerSetup = swaggerJSDoc(swaggerOptions)

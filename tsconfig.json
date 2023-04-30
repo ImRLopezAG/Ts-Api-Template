@@ -5,13 +5,18 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "target": "ES6",
+    "target": "ES2017",
     "strict": true,
     "moduleResolution": "node",
     "outDir": "./dist",
-    "rootDir": "./",
+    "rootDir": ".",
     "resolveJsonModule": true,
-    "sourceMap": true
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "./"
@@ -23,7 +28,6 @@
     "node_modules"
   ],
   "files": [
-    "./src/types/types.d.ts"
-  ],
-
+    "src/utils/types/types.d.ts"
+  ]
 }

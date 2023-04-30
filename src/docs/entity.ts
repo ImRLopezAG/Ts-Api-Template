@@ -32,7 +32,7 @@
 
 /**
  * @swagger
- * /api/entities:
+ * /api/Entity/List:
  *   get:
  *     tags:
  *       - Entity
@@ -55,7 +55,32 @@
 
 /**
  * @swagger
- * /api/entities:
+ * /api/Entity/Get/{id}:
+ *  get:
+ *     tags:
+ *       - Entity
+ *     summary: Get an entity
+ *     description: Get an entity
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Entity id
+ *     responses:
+ *       200:
+ *         description: Get an entity
+ *       404:
+ *         description: Not found
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
+/**
+ * @swagger
+ * /api/Entity/Create:
  *  post:
  *     tags:
  *       - Entity
@@ -79,33 +104,7 @@
 
 /**
  * @swagger
- * /api/entities/{id}:
- *  get:
- *     tags:
- *       - Entity
- *     summary: Get an entity
- *     description: Get an entity
- *     parameters:
- *       - in: path
- *         name: id
- *         schema:
- *           type: string
- *         required: true
- *         description: Entity id
- *     responses:
- *       200:
- *         description: Get an entity
- *       404:
- *         description: Not found
- *       401:
- *         description: Unauthorized
- *       500:
- *         description: Internal server error
- */
-
-/**
- * @swagger
- * /api/entities/{id}:
+ * /api/Entity/Update/{id}:
  *  put:
  *     tags:
  *       - Entity
@@ -136,7 +135,7 @@
 
 /**
  * @swagger
- * /api/entities/{id}:
+ * /api/Entity/Delete/{id}:
  *  delete:
  *     tags:
  *       - Entity
