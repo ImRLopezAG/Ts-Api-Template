@@ -7,7 +7,7 @@ This is an API template made with express and typescript, to speed up your devel
 ORM: Sequelize
 Language: Typescript
 Framework: Express
-Database: vercel/mongodb
+Database: mySql
 Deploy: Vercel,
 Auth: JWT
 Documentation: Swagger
@@ -23,7 +23,7 @@ Documentation: Swagger
 [![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white)](https://expressjs.com/es/)
 [![Typescript](https://img.shields.io/badge/Typescript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?logo=sequelize&logoColor=white)](https://sequelize.org/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Mysql](https://img.shields.io/badge/Mysql-4479A1?logo=mysql&logoColor=white)](https://www.mysql.com/)
 [![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com/)
 [![JWT](https://img.shields.io/badge/JWT-000000?logo=json-web-tokens&logoColor=white)](https://jwt.io/)
 [![Swagger](https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black)](https://swagger.io/)
