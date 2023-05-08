@@ -87,6 +87,65 @@
  *       500:
  *         description: Internal server error
  */
+/**
+ * @swagger
+ * /api/User/Email/{email}:
+ *   get:
+ *     tags:
+ *       - User
+ *     summary: Get user by email
+ *     description: Get a user by their email address
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: User's email address
+ *     responses:
+ *       200:
+ *         description: Get a user by email
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       404:
+ *         description: User not found
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
+ * @swagger
+ * /api/User/Username/{username}:
+ *   get:
+ *     tags:
+ *       - User
+ *     summary: Get user by username
+ *     description: Get a user by their username
+ *     parameters:
+ *       - in: path
+ *         name: username
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: User's username
+ *     responses:
+ *       200:
+ *         description: Get a user by username
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       404:
+ *         description: User not found
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
 
 /**
  * @swagger

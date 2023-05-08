@@ -1,9 +1,9 @@
-import { IGenericController } from '@/utils/constants'
 import { NextFunction, Request, Response } from 'express'
-import { Model } from 'sequelize'
+import { IGenericController } from '@/utils/constants'
 import { GenericService } from './generic.service'
+import { BaseEntity } from '@/models/base.entity'
 
-export class GenericController<TEntity extends Model, TService extends GenericService<TEntity>> implements IGenericController {
+export class GenericController<TEntity extends BaseEntity, TService extends GenericService<TEntity>> implements IGenericController {
   protected service: TService
 
   constructor (service: TService) {
@@ -30,8 +30,10 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
 
   async Get (req: Request, res: Response, next: NextFunction): Promise<Response | any> {
     try {
-      const id = req.params.id
-      id ?? res.status(400).json({ message: 'The id is required' })
+      const { id } = req.params
+      if (!id) {
+        return res.status(400).json({ message: 'The id is required' })
+      }
 
       const entity = await this.service.Get(id)
 
@@ -72,8 +74,10 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
 
   async Update (req: Request, res: Response, next: NextFunction): Promise<Response | any> {
     try {
-      const id = req.params.id
-      id ?? res.status(400).json({ message: 'The id is required' })
+      const { id } = req.params
+      if (!id) {
+        return res.status(400).json({ message: 'The id is required' })
+      }
 
       const entity = await this.service.Get(id)
 
@@ -94,17 +98,14 @@ export class GenericController<TEntity extends Model, TService extends GenericSe
 
   async Delete (req: Request, res: Response, next: NextFunction): Promise<Response | any> {
     try {
-      const id = req.params.id
-      id ?? res.status(400).json({ message: 'The id is required' })
-
-      const entity = await this.service.Get(id)
-
-      if (entity != null) {
-        await this.service.Delete(id)
-        return res.sendStatus(204)
-      } else {
-        return res.status(404).json({ message: 'Not found' })
+      const { id } = req.params
+      if (!id) {
+        return res.status(400).json({ message: 'The id is required' })
       }
+
+      const deleted = await this.service.Delete(id)
+
+      return res.status(200).json({ deleted })
     } catch (error) {
       if (error instanceof Error) {
         return next(error)

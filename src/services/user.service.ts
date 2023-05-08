@@ -1,15 +1,15 @@
 import { GenericService } from '@/core'
 import { IUserService } from '@/interfaces/services/IUserService'
-import { User } from '@/models'
+import { User, UserModel } from '@/models'
 
 export class UserService extends GenericService<User> implements IUserService {
   constructor () {
-    super(User)
+    super(UserModel)
   }
 
   async GetByUserName (username: string): Promise<User | null> {
     try {
-      const user = await User.findOne({ where: { username } })
+      const user = await UserModel.findOne({ where: { username } })
       return user
     } catch (error) {
       if (error instanceof Error) {
@@ -21,7 +21,7 @@ export class UserService extends GenericService<User> implements IUserService {
 
   async GetByEmail (email: string): Promise<User | null> {
     try {
-      const user = await User.findOne({ where: { email } })
+      const user = await UserModel.findOne({ where: { email } })
       return user
     } catch (error) {
       if (error instanceof Error) {

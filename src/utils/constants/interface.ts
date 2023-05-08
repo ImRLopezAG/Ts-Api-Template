@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from 'express'
-import { Model } from 'sequelize'
+import { Document } from 'mongoose'
 
 export interface Schema {
   field: string | any
   allowNull: boolean | any
 }
 
-export interface IGenericService<TEntity extends Model> {
+export interface IGenericService<TEntity extends Document> {
   GetAll: () => Promise<TEntity[]>
   Get: (id: string) => Promise<TEntity | null>
   Create: (data: TEntity) => Promise<TEntity>

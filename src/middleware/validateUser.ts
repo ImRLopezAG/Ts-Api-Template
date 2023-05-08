@@ -1,14 +1,14 @@
-import { UserService } from '@/services'
-import { SECRET } from '@/utils/constants'
 import { NextFunction, Request, Response } from 'express'
 import jwt, { JwtPayload } from 'jsonwebtoken'
+import { UserModel } from '@/models'
+import { SECRET } from '@/utils/constants'
 
 interface ValidateUser {
   username: string
   email: string
 }
 
-const services = new UserService()
+const services = UserModel
 export const validateUser = async (req: Request, res: Response, next: NextFunction): Promise<Response | any> => {
   const { username, email }: ValidateUser = req.body
 
@@ -16,12 +16,12 @@ export const validateUser = async (req: Request, res: Response, next: NextFuncti
     return res.status(400).json({ status: 400, message: 'The property username or email is required' })
   }
 
-  const userByUsername = await services.GetByUserName(username)
+  const userByUsername = await services.findOne({ username }).exec()
   if (userByUsername?.username === username) {
     return res.status(400).json({ status: 400, message: 'Username already in use' })
   }
 
-  const userByEmail = await services.GetByEmail(email)
+  const userByEmail = await services.findOne({ email }).exec()
   if (userByEmail?.email === email) {
     return res.status(400).json({ status: 400, message: 'Email already in use' })
   }
@@ -40,22 +40,22 @@ export const validateUpdateUser = async (req: Request, res: Response, next: Next
   if (token === undefined) return res.status(401).json({ status: 401, message: 'Access denied, you need to login' })
   try {
     const payload = jwt.verify(token, SECRET) as JwtPayload
-    const user = await services.Get(payload.uid)
-    const entity = await services.Get(id)
+    const user = await services.findById(payload.uid)
+    const entity = await services.findById(id)
 
     if (user?.id !== entity?.id) {
       return res.status(401).json({ status: 400, message: 'The user is not the owner of the resource' })
     }
 
     if (username !== undefined && user?.username !== username) {
-      const searchUser = await services.GetByUserName(username)
+      const searchUser = await services.findOne({ username })
       if (searchUser?.username === username) {
         return res.status(400).json({ status: 400, message: 'Username already in use' })
       }
     }
 
     if (username !== undefined && user?.email !== email) {
-      const searchEmail = await services.GetByEmail(email)
+      const searchEmail = await services.findOne({ email })
       if (searchEmail?.email === email) {
         return res.status(400).json({ error: 'Email already in use' })
       }

@@ -1,30 +1,9 @@
-import { DataTypes, Model } from 'sequelize'
-import crypto from 'crypto'
-import sequelize from '../database/database'
+import { getModelForClass, prop } from '@typegoose/typegoose'
+import { BaseEntity } from './base.entity'
 
-export class Entity extends Model {
-  declare id: string
+export class Entity extends BaseEntity {
+  @prop()
   declare name: string
 }
 
-Entity.init(
-  {
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue: (): string => crypto.randomUUID(),
-      unique: true
-    },
-    name: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
-    }
-  },
-  {
-    tableName: 'entities',
-    sequelize
-  }
-)
+export const EntityModel = getModelForClass(Entity)

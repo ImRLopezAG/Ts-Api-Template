@@ -1,8 +1,37 @@
 
 # Ts-Template-Api
 
-This is an API template made with express and typescript, to speed up your development, it contains repositories and generic services for the typical CRUD actions, based on a Sequelize model, we use it for data persistence
+This is an API template made with express and typescript, to speed up your development, it contains repositories and generic services for the typical CRUD actions, based on a Mongoose and TypeGoose model, we use it for data persistence
 
+```
+ODM: mongoose
+ORM: typegoose
+Language: Typescript
+Framework: Express
+Database: vercel/mongodb
+Deploy: Vercel,
+Auth: JWT
+Documentation: Swagger
+```
+## Badges
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/ImRLopezAG/Forget-Project)
+
+### 🛠️ Tools
+
+[![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white)](https://expressjs.com/)
+[![Mongoose](https://img.shields.io/badge/Mongoose-47A248?logo=mongoose&logoColor=white)](https://mongoosejs.com/)
+[![Typegoose](https://img.shields.io/badge/Typegoose-3178C6?logo=typescript&logoColor=white)](https://typegoose.github.io/typegoose/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Typescript](https://img.shields.io/badge/Typescript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Node](https://img.shields.io/badge/Node-339933?logo=node.js&logoColor=white)](https://nodejs.org/en/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com/)
+[![JWT](https://img.shields.io/badge/JWT-000000?logo=json-web-tokens&logoColor=white)](https://jwt.io/)
+[![Swagger](https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black)](https://swagger.io/)
+[![Prettier](https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=black)](https://prettier.io/)
+[![Eslint](https://img.shields.io/badge/Eslint-4B32C3?logo=eslint&logoColor=white)](https://eslint.org/)
+![Ts-Standard](https://img.shields.io/badge/Ts--Standard-3178C6?logo=typescript&logoColor=white)
 
 ## Installation
 
@@ -86,6 +115,79 @@ This is an API template made with express and typescript, to speed up your devel
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to delete |
+
+## Users
+
+### Get Users
+
+```
+  GET /api/User/List
+```
+
+
+### Get User
+
+```
+  GET /api/User/Get/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+### Get User by email
+
+```
+  GET /api/User/email/${email}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email`      | `string` | **Required**. Id of item to fetch |
+### Get User by username
+
+```
+  GET /api/User/username/${username}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `username`      | `string` | **Required**. Id of item to fetch |
+
+
+### Add User
+
+```
+  Post /api/User/Create
+```
+
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email`      | `string` | **Required**.  |
+| `username`      | `string` | **Required**.  |
+| `password`      | `string` | **Required**.  |
+
+### Update User
+
+```
+  Put /api/User/Update/${id}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**.|
+
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email`      | `string` | **Required**.  |
+| `username`      | `string` | **Required**.  |
+| `password`      | `string` | **Required**.  |
+
+### Delete User
+
+```
+  Delete /api/User/Delete/${id}
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**.|
 
 ## Badges
 
